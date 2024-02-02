@@ -43,37 +43,42 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-const marker = L.marker([29.6436, -82.3549]).addTo(map)
-		.bindPopup('<b>Hello world!</b><br />I am a popup GeoGator.').openPopup();
+fetch('map.geojson')
+ .then(response => response.json())
+ .then(data => {
+   L.geoJSON(data).addTo(map);
+ });
+//const marker = L.marker([29.6436, -82.3549]).addTo(map)
+		//.bindPopup('<b>Hello world!</b><br />I am a popup GeoGator.').openPopup();
 
-	const circle = L.circle([29.6436, -82.3549], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 500
-	}).addTo(map).bindPopup('I am a circle.');
+	//const circle = L.circle([29.6436, -82.3549], {
+	// 	color: 'red',
+	// 	fillColor: '#f03',
+	// 	fillOpacity: 0.5,
+	// 	radius: 500
+	// }).addTo(map).bindPopup('I am a circle.');
 
-	const polygon = L.polygon([
-	[29.6436, -82.3549],
-	[29.6436, -82.3549],
-	[29.6436, -82.3549]
-	[29.6436, -82.3549]
-	]).addTo(map).bindPopup('I am a polygon.');
+	// const polygon = L.polygon([
+	// [29.6436, -82.3549],
+	// [29.6436, -82.3549],
+	// [29.6436, -82.3549]
+	// [29.6436, -82.3549]
+	// ]).addTo(map).bindPopup('I am a polygon.');
 
 
-	const popup = L.popup()
-		.setLatLng([29.64572, -82.32288])
-		.setContent('I am a GeoGator at Rosa Parks.')
-		.openOn(map);
+	// const popup = L.popup()
+	// 	.setLatLng([29.64572, -82.32288])
+	// 	.setContent('I am a GeoGator at Rosa Parks.')
+	// 	.openOn(map);
 
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent(`You clicked the map at ${e.latlng.toString()}`)
-			.openOn(map);
-	}
+	// function onMapClick(e) {
+	// 	popup
+	// 		.setLatLng(e.latlng)
+	// 		.setContent(`You clicked the map at ${e.latlng.toString()}`)
+	// 		.openOn(map);
+	// }
 
-	map.on('click', onMapClick);
+	// map.on('click', onMapClick);
 
     </script>
 </body>
